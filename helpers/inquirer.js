@@ -43,3 +43,11 @@ exports.inquirerMenu = async () => {
 
     return option;
 };
+
+exports.pause = async () => {
+    await inquirer.prompt({
+        type: "input",
+        name: "enter",
+        message: `Press ${"ENTER".green} to continue`,
+    });
+};
