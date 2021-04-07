@@ -51,3 +51,24 @@ exports.pause = async () => {
         message: `Press ${"ENTER".green} to continue`,
     });
 };
+
+/**
+ * Read the input from the value sent by console
+ * @param {String} message The message that will be displayed
+ * @return {String} desc The input value from the user
+ **/
+exports.readInput = async message => {
+    const { desc } = await inquirer.prompt({
+        type: "input",
+        name: "desc",
+        message,
+        validate(value) {
+            if (value.length === 0) {
+                return "Please, enter a valid value";
+            }
+            return true;
+        },
+    });
+
+    return desc;
+};
