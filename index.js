@@ -1,6 +1,7 @@
 require("colors");
 const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
 const Tasks = require("./models/Tasks");
+const { saveInTheDB } = require("./utils/saveFile");
 
 console.clear();
 
@@ -16,6 +17,8 @@ const main = async () => {
             const desc = await readInput("Description:");
             tasks.createTask(desc);
         }
+
+        saveInTheDB(tasks.arrayList);
         await pause();
     } while (opt !== "0");
 };
