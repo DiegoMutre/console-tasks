@@ -76,3 +76,22 @@ exports.readInput = async message => {
 
     return desc;
 };
+
+exports.showTasksCheckList = async (tasks = []) => {
+    const { ids } = await inquirer.prompt({
+        type: "checkbox",
+        name: "ids",
+        message: "Mark",
+        choices: tasks.map((task, index) => {
+            const numberList = `${index + 1}`.green;
+
+            return {
+                value: numberList,
+                name: `${numberList} ${task.desc}`,
+                checked: task.completedIn ? true : false,
+            };
+        }),
+    });
+
+    return ids;
+};
