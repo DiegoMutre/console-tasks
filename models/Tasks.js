@@ -1,3 +1,4 @@
+require("colors");
 const Task = require("./Task");
 
 class Tasks {
@@ -23,6 +24,22 @@ class Tasks {
     createTask(desc = "") {
         const task = new Task(desc);
         this._list[task.id] = task;
+    }
+
+    // Show all the tasks from the fake db
+    showTasks() {
+        this.arrayList.forEach((task, index) => {
+            const listIndex = `${index + 1}.-`.green;
+            const { desc, completedIn } = task;
+            const state = completedIn ? "Completed".green : "Pending".red;
+            console.log(`${listIndex} ${desc} :: ${state}`);
+        });
+    }
+
+    loadTasksFromDB(tasks = []) {
+        tasks.forEach(task => {
+            this._list[task.id] = task;
+        });
     }
 }
 
