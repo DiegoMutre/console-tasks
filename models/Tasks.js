@@ -41,6 +41,21 @@ class Tasks {
             this._list[task.id] = task;
         });
     }
+
+    filterTasks(showCompleted = true) {
+        const tasks = this.arrayList.filter(task =>
+            showCompleted ? task.completedIn : !task.completedIn
+        );
+        tasks.forEach((task, index) => {
+            let completed = task.completedIn
+                ? "Completed".green
+                : "Pending".red;
+
+            console.log(
+                `${(index + 1 + ".").green} ${task.desc} :: ${completed}`
+            );
+        });
+    }
 }
 
 module.exports = Tasks;
