@@ -27,6 +27,14 @@ const main = async () => {
             tasks.showTasks();
         }
 
+        if (opt === "3") {
+            tasks.filterTasks();
+        }
+
+        if (opt === "4") {
+            tasks.filterTasks(false);
+        }
+
         saveInTheDB(tasks.arrayList);
         await pause();
     } while (opt !== "0");
