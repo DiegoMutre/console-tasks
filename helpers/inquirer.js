@@ -27,6 +27,10 @@ exports.inquirerMenu = async () => {
                 name: `${"3.".green} List completed tasks`,
             },
             {
+                value: "4",
+                name: `${"4.".green} List pending tasks`,
+            },
+            {
                 value: "5",
                 name: `${"5.".green} Complete Task(s)`,
             },
