@@ -86,7 +86,7 @@ exports.showTasksCheckList = async (tasks = []) => {
             const numberList = `${index + 1}`.green;
 
             return {
-                value: numberList,
+                value: task.id,
                 name: `${numberList} ${task.desc}`,
                 checked: task.completedIn ? true : false,
             };
