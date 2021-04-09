@@ -4,6 +4,8 @@ const {
     pause,
     readInput,
     showTasksCheckList,
+    showTasksToDelete,
+    confirmSelection,
 } = require("./helpers/inquirer");
 const Tasks = require("./models/Tasks");
 const { saveInTheDB, readDB } = require("./utils/saveFile");
@@ -43,6 +45,15 @@ const main = async () => {
         if (opt === "5") {
             const ids = await showTasksCheckList(tasks.arrayList);
             tasks.toggleCompletedTasks(ids);
+        }
+
+        if (opt === "6") {
+            const id = await showTasksToDelete(tasks.arrayList);
+
+            if (id !== "0") {
+                const ok = await confirmSelection("Are you sure?");
+                ok && tasks.deleteTask(id);
+            }
         }
 
         saveInTheDB(tasks.arrayList);
