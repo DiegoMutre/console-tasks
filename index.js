@@ -1,5 +1,10 @@
 require("colors");
-const { inquirerMenu, pause, readInput } = require("./helpers/inquirer");
+const {
+    inquirerMenu,
+    pause,
+    readInput,
+    showTasksCheckList,
+} = require("./helpers/inquirer");
 const Tasks = require("./models/Tasks");
 const { saveInTheDB, readDB } = require("./utils/saveFile");
 
@@ -33,6 +38,11 @@ const main = async () => {
 
         if (opt === "4") {
             tasks.filterTasks(false);
+        }
+
+        if (opt === "5") {
+            const ids = await showTasksCheckList(tasks.arrayList);
+            tasks.toggleCompletedTasks(ids);
         }
 
         saveInTheDB(tasks.arrayList);
