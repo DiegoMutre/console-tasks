@@ -95,3 +95,28 @@ exports.showTasksCheckList = async (tasks = []) => {
 
     return ids;
 };
+
+exports.showTasksToDelete = async (tasks = []) => {
+    const choices = tasks.map((task, index) => {
+        const numberList = `${index + 1}`.green;
+
+        return {
+            value: task.id,
+            name: `${numberList} ${task.desc}`,
+        };
+    });
+
+    choices.unshift({
+        value: "0",
+        name: `${"0".green} Cancel`,
+    });
+
+    const { id } = await inquirer.prompt({
+        type: "list",
+        name: "id",
+        message: "Delete",
+        choices,
+    });
+
+    return id;
+};
