@@ -71,6 +71,13 @@ class Tasks {
             }
         });
     }
+
+    deleteTask(id = "") {
+        if (this._list[id]) {
+            delete this._list[id];
+            console.log("Task deleted");
+        }
+    }
 }
 
 module.exports = Tasks;
