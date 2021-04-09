@@ -120,3 +120,13 @@ exports.showTasksToDelete = async (tasks = []) => {
 
     return id;
 };
+
+exports.confirmSelection = async message => {
+    const { ok } = await inquirer.prompt({
+        type: "confirm",
+        name: "ok",
+        message,
+    });
+
+    return ok;
+};
